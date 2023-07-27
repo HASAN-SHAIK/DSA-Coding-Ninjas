@@ -1,5 +1,5 @@
 #include<iostream>
-#include "../Fraction.cpp";
+#include "Fraction.cpp";
 
 using namespace std;
 int main(){
@@ -16,9 +16,15 @@ int main(){
     // f1.print();
     // f4.print();
 
-    Fraction f5 = ++(++f1);
-    f1.print();
-    f5.print();
+    // Fraction f5 = ++(++f1);
+    // f1.print();
+    // f5.print();
+
+    Fraction f6(1,2);
+    // f6+=f1;
+    // f6.print();
+    (f6+=f1)+=f1;
+    f6.print();
     
 } 
 

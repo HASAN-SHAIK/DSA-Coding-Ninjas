@@ -26,9 +26,27 @@ class Fraction{
         fNew.simplify();
         return fNew;
     }
-
+    //Pre increment
     Fraction& operator++(){
         numerator+=denominator;
+        simplify();
+        return *this;
+    }
+    //Post Increment
+    Fraction operator++(int){
+        Fraction f(numerator,denominator);
+        numerator+=denominator;
+        simplify();
+        f.simplify();
+        return f;
+    }
+    Fraction& operator+=(Fraction const &f1){
+        int lcm=f1.denominator*this->denominator;
+        int x = lcm/denominator;
+        int y = lcm/f1.denominator; 
+        int num = x*numerator+y*f1.numerator;
+        numerator=num;
+        denominator=lcm;
         simplify();
         return *this;
     }
