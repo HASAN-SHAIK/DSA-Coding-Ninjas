@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-#include "Node.cpp";
+#include "Node.cpp"
 
 //create a linked List until -1 is entered
 Node* createLL(Node *head){
