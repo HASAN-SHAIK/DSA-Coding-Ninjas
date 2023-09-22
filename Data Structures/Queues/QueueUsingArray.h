@@ -6,30 +6,29 @@ class QueueUsingArray{
     int size;
     int capacity;
     public:
-    QueueUsingArray(int x){
-        capacity=x;
-        queue = new T[x];
+    QueueUsingArray(int size){
+        capacity=size;
+        queue = new T[size];
         firstIdx=-1;
         nextIdx =0;
         size=0;
     }
-    void enqueue(int element){
+    int enqueue(int element){
         if(firstIdx==-1){
             queue[++firstIdx]=element;
             nextIdx++;
         }
-        else if(nextIdx==firstIdx){
-        cout<<"Queue is Full"<<endl;
-        return;
-        }
+        else if(nextIdx==firstIdx)
+        return 0;
         else{
             queue[nextIdx++]=element;
         }
         if(nextIdx==capacity)
         nextIdx=0;
         size++;
+        return 1;
     }
-    T dequeue(){
+    int dequeue(){
         if(firstIdx<capacity-1){
         firstIdx++;
         return queue[firstIdx-1];
@@ -40,12 +39,13 @@ class QueueUsingArray{
             nextIdx=0;
         }
         else if(firstIdx==-1)
-        cout<<"Queue is Empty"<<endl;
+        return 0;
         else{
             firstIdx=0;
         }
+        return 1;
     }
-    int front(){
+    T front(){
         return queue[firstIdx];
     }
     int getSize(){
