@@ -1,9 +1,9 @@
 
 #include<iostream>
-#include "QueueUsingArray.h"
+#include "QueueUsingDynamicArray.h"
 using namespace std;
 int main(){
-    QueueUsingArray<int> q(10);
+    QueueUsingDynamicArray<int> q(2);
     q.isEmpty();
     cout<<q.dequeue()<<endl;
     q.enqueue(10);
