@@ -11,47 +11,40 @@ class QueueUsingArray{
         queue = new T[size];
         firstIdx=-1;
         nextIdx =0;
-        size=0;
+        this->size=0;
     }
     int enqueue(int element){
-        if(firstIdx==-1){
-            queue[++firstIdx]=element;
-            nextIdx++;
-        }
-        else if(nextIdx==firstIdx)
+        if(size==capacity)
         return 0;
-        else{
-            queue[nextIdx++]=element;
+        else if(size==0){
+            nextIdx++;
+            firstIdx++;
+            queue[firstIdx]=element;
         }
-        if(nextIdx==capacity)
-        nextIdx=0;
+        else
+        queue[nextIdx++]=element;
+        nextIdx=nextIdx%capacity;
         size++;
         return 1;
+
     }
     int dequeue(){
-        if(firstIdx<capacity-1){
-        firstIdx++;
-        return queue[firstIdx-1];
-        }
-        else if(firstIdx==capacity-1&&nextIdx==0)
-        {
-            firstIdx=-1;
-            nextIdx=0;
-        }
-        else if(firstIdx==-1)
+        if(firstIdx==-1)
         return 0;
-        else{
-            firstIdx=0;
-        }
+        firstIdx+=1;
+        firstIdx=firstIdx%capacity;
+        size--;
         return 1;
     }
-    T front(){
+    T getFront(){
+        if(firstIdx!=-1)
         return queue[firstIdx];
+        return -1;
     }
     int getSize(){
         return size;
     }
-    int isEmpty(){
-        return size;
+    bool isEmpty(){
+        return size==0;
     }
 };

@@ -2,23 +2,23 @@
 #include<iostream>
 #include "QueueUsingArray.h"
 using namespace std;
-template <typename T>
 int main(){
     QueueUsingArray<int> q(10);
     q.isEmpty();
-    q.dequeue();
+    cout<<q.dequeue()<<endl;
     q.enqueue(10);
-    cout<<q.front()<<endl;
+    cout<<q.getFront()<<endl;
     q.enqueue(20);
+    q.dequeue();
     q.enqueue(30);
-    int x=q.front()<<endl;
+    int x=q.getFront();
     cout<<x<<endl;
     q.enqueue(40);
     q.enqueue(50);
     q.enqueue(60);
     q.dequeue();
-    cout<<q.front()<<endl;
-    q.getSize();
-    q.isEmpty();
+    cout<<q.getFront()<<endl;
+    cout<<q.getSize()<<endl;
+    cout<<q.isEmpty()<<endl;
     return 0;
 }
