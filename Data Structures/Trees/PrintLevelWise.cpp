@@ -1,17 +1,9 @@
-#include<vector>
+#include<iostream>
+#include<queue>
+#include "TreeNode.h"
 using namespace std;
-template <typename T>
-class TreeNode
-{
-public:
-    T data;
-    vector<TreeNode<T>*> children; 
-    TreeNode(T data){
-        this->data=data;
-    }
 
-    //Take input levelwise
-    TreeNode<int>* takeInputLevelWise(){
+TreeNode<int>* takeInputLevelWise(){
     queue<TreeNode<int>*> pendingNodes;
     int rootData;
     cout<<"Enter Root Node data"<<endl;
@@ -34,10 +26,10 @@ public:
         }
     }
     return root;
-    }
+}
 
-    //Print Tree Level Wise
-    void printLevelWise(TreeNode<int>* root) {
+void printLevelWise(TreeNode<int>* root) {
+    // Write your code here
     queue<TreeNode<int>*> pendingNodes;
     pendingNodes.push(root);
     while(pendingNodes.size()!=0){
@@ -54,39 +46,9 @@ public:
         }
         cout<<endl;
     }
-    }
+}
 
-    //To Find sum of Nodes
-    int sumOfNodes(TreeNode<int>* root) {
-    int sum=root->data;
-    for(int i=0;i<root->children.size();i++)
-    sum+=sumOfNodes(root->children[i]);
-    return sum;
-    }
-
-    //To Find Max Node
-    TreeNode<int>* maxDataNode(TreeNode<int>* root) {
-    TreeNode<int>* max= root;
-    for(int i=0;i<root->children.size();i++){
-        TreeNode<int>* max2=maxDataNode(root->children[i])->d;
-        if(max->data<max2->data)
-        max=max2;
-    }
-    return max;
-    }
-
-    //Height of the tree
-    int getHeight(TreeNode<int>* root) {
-    if(root->children.size()==0)
-    return 1;
-    int ans=1;
-    int h;
-    for(int i=0;i<root->children.size();i++){
-        h= 1+getHeight(root->children[i]);
-        if(h>ans)
-        ans=h;   
-    }
-    return ans;
-    }
-};
-
+int main(){
+    TreeNode<int>* root=takeInputLevelWise();
+    printLevelWise(root);
+}
