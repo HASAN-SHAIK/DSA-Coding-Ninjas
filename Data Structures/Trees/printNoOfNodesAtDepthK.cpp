@@ -2,8 +2,8 @@
 #include<queue>
 #include "TreeNode.h"
 using namespace std;
-
-TreeNode<int>* takeInputLevelWise(){
+ //Take input levelwise
+    TreeNode<int>* takeInputLevelWise(){
     queue<TreeNode<int>*> pendingNodes;
     int rootData;
     cout<<"Enter Root Node data"<<endl;
@@ -26,20 +26,18 @@ TreeNode<int>* takeInputLevelWise(){
         }
     }
     return root;
-}
-
-void printTree(TreeNode<int>* root){
-    cout<<root->data<<":";
-    for(int i=0;i<root->children.size();i++)
-        cout<<root->children[i]->data<<",";
-    cout<<endl;
+    }
+void printNodesAtDepthK(TreeNode<int> *root,int k){
+    if(k==0){
+    cout<<root->data<<" ";
+    return;
+    }
     for(int i=0;i<root->children.size();i++){
-        printTree(root->children[i]);
+        printNodesAtDepthK(root->children[i],k-1);
     }
 }
-
 int main(){
-    TreeNode<int>* root=takeInputLevelWise();
-    printTree(root);
+    TreeNode<int> *root = takeInputLevelWise();
+    printNodesAtDepthK(root,2);
     delete root;
 }

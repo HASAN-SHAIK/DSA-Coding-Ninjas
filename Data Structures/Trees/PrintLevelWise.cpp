@@ -51,4 +51,5 @@ void printLevelWise(TreeNode<int>* root) {
 int main(){
     TreeNode<int>* root=takeInputLevelWise();
     printLevelWise(root);
+    delete root;
 }

@@ -30,5 +30,5 @@ void printTree(TreeNode<int>* root){
 int main(){
     TreeNode<int>* root=takeInput();
     printTree(root);
-
+    delete root;
 }

@@ -8,4 +8,5 @@ int main(){
     TreeNode<int> *child2 = new TreeNode<int>(3);
     root->children.push_back(child1);
     root->children.push_back(child2);
+    delete root;
 }

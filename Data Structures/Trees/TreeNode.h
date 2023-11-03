@@ -6,9 +6,13 @@ class TreeNode
 public:
     T data;
     vector<TreeNode<T>*> children; 
+    TreeNode(){
+        takeInputLevelWise();
+    }
     TreeNode(T data){
         this->data=data;
     }
+    
 
     //Take input levelwise
     TreeNode<int>* takeInputLevelWise(){
@@ -87,6 +91,42 @@ public:
         ans=h;   
     }
     return ans;
+    }
+
+    //No of Leafs of a Tree
+    int getLeafNodeCount(TreeNode<int>* root) {
+    if(root->children.size()==0)
+    return 1;
+    int ans=0;
+    for (int i = 0; i < root->children.size(); i++) {
+    int k = getLeafNodeCount(root->children[i]);
+    ans += k;
+    }
+    return ans;
+    }
+
+    //Print preorder
+    void printPreOrder(TreeNode<int>* root) {
+    if(root==NULL)
+    return;
+    cout<<root->data<<" ";
+    for(int i=0;i<root->children.size();i++)
+    printPreOrder(root->children[i]);
+   
+    }
+
+    //Print Postorder
+    void printPostOrder(TreeNode<int>* root) {
+    if(root==NULL)
+    return;
+    for(int i=0;i<root->children.size();i++)
+    printPostOrder(root->children[i]);
+    cout<<root->data<<" ";
+    }
+
+    ~TreeNode(){
+        for(int i=0;i<children.size();i++)
+        delete children[i];
     }
 };
 
