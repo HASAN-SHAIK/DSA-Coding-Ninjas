@@ -29,7 +29,8 @@ BinaryTreeNode<int>* takeInput(){
     BinaryTreeNode<int> *right = takeInput();
     root->left = left;
     root->right = right;
-    return root;
+    return root; 
+    
 }
 
 BinaryTreeNode<int>* takeInputLevelWise(){

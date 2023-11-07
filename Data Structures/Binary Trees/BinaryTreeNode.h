@@ -1,5 +1,5 @@
 template <typename T>
-class BinaryTreeNode{
+class BinaryTreeNode{ 
     public:
     int data;
     BinaryTreeNode<T> *left;
