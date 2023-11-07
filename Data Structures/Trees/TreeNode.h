@@ -1,18 +1,19 @@
 #include<vector>
+#include<queue>
 using namespace std;
 template <typename T>
 class TreeNode
 {
 public:
     T data;
-    vector<TreeNode<T>*> children; 
+    vector<TreeNode<T>*> children;
     TreeNode(){
         takeInputLevelWise();
     }
     TreeNode(T data){
         this->data=data;
     }
-    
+
 
     //Take input levelwise
     TreeNode<int>* takeInputLevelWise(){
@@ -88,7 +89,7 @@ public:
     for(int i=0;i<root->children.size();i++){
         h= 1+getHeight(root->children[i]);
         if(h>ans)
-        ans=h;   
+        ans=h;
     }
     return ans;
     }
@@ -112,7 +113,7 @@ public:
     cout<<root->data<<" ";
     for(int i=0;i<root->children.size();i++)
     printPreOrder(root->children[i]);
-   
+
     }
 
     //Print Postorder
