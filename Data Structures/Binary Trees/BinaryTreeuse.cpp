@@ -187,10 +187,84 @@ void inorder(BinaryTreeNode<int> *root){
     inorder(root->right);
 }
 
+int diameterOfTree(BinaryTreeNode<int> * root){
+    if(root==NULL)
+    return 0;
+    int a  = height(root);
+    int b = diameterOfTree(root->left);
+    int c =  diameterOfTree(root->right);
+    return max(a,max(b,c));
+}
 
+BinaryTreeNode<int>* constructTree(int *instart,int *inend,int *prestart,int *preend){
+	if(instart>inend)
+	return NULL;
+	if(prestart==preend)
+	return new BinaryTreeNode<int>(preend[0]);
+	if(instart==inend)
+	return new BinaryTreeNode<int>(instart[0]);
+	
+
+	BinaryTreeNode<int> *root= new BinaryTreeNode<int>(prestart[0]);
+	//Left Tree
+	int count=0;
+	int *linstart = instart;
+	
+	while(instart[0]!=root->data){
+		instart++;
+		count++;
+	}
+	int *linend=instart-1;
+	int *lprestart = prestart+1;
+        while (count > 0) {
+                prestart++;
+                count--;
+        }
+	int *lpreend = prestart;
+	root->left = constructTree(linstart, linend, lprestart, lpreend);
+	
+	//Right Tree
+	int *rinstart = linend+2;
+	int *rinend = inend;
+	int *rpreend = preend;
+	int *rprestart = lpreend+1;
+	root->right = constructTree(rinstart,rinend,rprestart,rpreend);
+
+	return root;
+}
+BinaryTreeNode<int>* buildTreeUsingPreorderInorder(int *preorder, int preLength, int *inorder, int inLength) {
+    // Write your code here
+	return constructTree(inorder,inorder+inLength-1,preorder,preorder+preLength-1);
+}
+
+BinaryTreeNode<int> * buildTreeHelper(int *poststart,int *postend,int*instart,int*inend){
+	if(instart>inend)
+	return NULL;
+	BinaryTreeNode<int> *root= new BinaryTreeNode<int>(postend[0]);
+	int *linstart = instart;
+	int *lpoststart = poststart;
+        while (root->data != instart[0]) {
+        poststart++;
+        instart++;
+        }
+        int *linend = instart-1;
+	int *lpostend=poststart-1;
+	int *rinstart= instart+1;
+	int *rinend = inend;
+	int *rpoststart = poststart;
+	int *rpostend = postend-1;
+	root->left = buildTreeHelper(lpoststart,lpostend,linstart,linend);
+	root->right = buildTreeHelper(rpoststart,rpostend,rinstart,rinend);
+	return root;
+}
+
+BinaryTreeNode<int>* buildTreeUsingPostorderInorder(int *postorder, int postLength, int *inorder, int inLength) {
+    // Write your code here
+	return buildTreeHelper(postorder,postorder+postLength-1,inorder,inorder+inLength-1);
+}
 
 int main(){
     BinaryTreeNode<int> *root = takeInputLevelWise();
     printTree(root);
-    inorder(root);
+    cout<<"DIameter: "<<diameterOfTree(root);
 }
