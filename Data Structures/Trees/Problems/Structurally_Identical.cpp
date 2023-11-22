@@ -1,3 +1,6 @@
+#include "../TreeNode.h"
+#include<iostream>
+using namespace std;
 bool areIdentical(TreeNode<int> *root1, TreeNode<int> * root2) {
     // Write your code here
     if(root1->data!=root2->data)
