@@ -1,4 +1,6 @@
 #include<queue>
+#include<iostream>
+using namespace std;
 vector<int> mergeKSortedArrays(vector<vector<int>*> input) {
     // Write your code here
     vector<int> ans;
