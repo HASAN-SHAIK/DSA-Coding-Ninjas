@@ -1,7 +1,9 @@
 #include<queue>
 #include <utility>
+#include<iostream>
+using namespace std;
 int buyTicket(int *arr, int n, int k) {
-    priority_queue<int>  pq;
+    priority_queue<int> pq;
     queue<int> q;
     int time=0;
 
