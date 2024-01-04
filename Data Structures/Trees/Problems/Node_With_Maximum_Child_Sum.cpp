@@ -1,3 +1,6 @@
+#include "../TreeNode.h"
+#include<iostream>
+using namespace std;
 #include <utility>
 pair<TreeNode<int>*,int> maxNode(TreeNode<int>* root){
     pair<TreeNode<int>*,int> max;

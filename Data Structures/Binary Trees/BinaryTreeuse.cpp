@@ -263,6 +263,23 @@ BinaryTreeNode<int>* buildTreeUsingPostorderInorder(int *postorder, int postLeng
 	return buildTreeHelper(postorder,postorder+postLength-1,inorder,inorder+inLength-1);
 }
 
+#include<limits.h>
+pair<int, int> getMinAndMax(BinaryTreeNode<int> *root) {
+	// Write your code here
+    if (root == NULL) {
+		pair<int,int> p;
+		p.first=INT_MAX;
+		p.second=INT_MIN;
+		return p;
+    }
+    pair<int,int> max1 = getMinAndMax(root->left);
+	pair<int,int> max2 = getMinAndMax(root->right);
+	pair<int,int> ans;
+	ans.second = max(root->data,max(max1.second,max2.second));
+	ans.first= min(root->data,min(max1.first,max2.first));
+	return ans;
+}
+
 int main(){
     BinaryTreeNode<int> *root = takeInputLevelWise();
     printTree(root);
