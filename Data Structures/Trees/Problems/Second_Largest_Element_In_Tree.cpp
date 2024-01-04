@@ -1,3 +1,6 @@
+#include "../TreeNode.h"
+#include<iostream>
+using namespace std;
 //Brute Force
 TreeNode<int>* maxDataNode(TreeNode<int>* root) {
     TreeNode<int>* max= root;

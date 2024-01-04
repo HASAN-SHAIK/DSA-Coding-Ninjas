@@ -1,3 +1,6 @@
+#include "../TreeNode.h"
+#include<iostream>
+using namespace std;
 bool isPresent(TreeNode<int>* root, int x) {
     if(root==NULL)
     return false;
