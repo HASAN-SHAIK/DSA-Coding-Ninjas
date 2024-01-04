@@ -1,3 +1,6 @@
+#include "../TreeNode.h"
+#include<iostream>
+using namespace std;
 void  replacewithDepth(TreeNode<int> *root,int d){
     root->data=d;
     for(int i=0;i<root->children.size();i++){
