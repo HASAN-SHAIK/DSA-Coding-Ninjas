@@ -18,4 +18,11 @@ int main(){
     bool x=head.searchWord("hasan");
     if(x==true)
         cout<<"Sample"<<endl;
+    head.removeWord("hasan");
+    if(head.searchWord("hasan"))
+        cout<<"Found\n";
+    else
+        cout<<"Not Found"<<endl;
+    head.searchWord("hasan");
+    head.removeWord("hasan");
 }

@@ -64,4 +64,26 @@ class Trie{
     bool searchWord(string word){
         return getWord(root,word);
     }
+    void removeWord(TrieNode *root,string word){
+        //Base case
+        if(word.size()==0){
+            root->isTerminal = false;
+            return;
+        }
+        int index = word[0] - 'a';
+        TrieNode* child = root->children[index];
+        if(child==NULL)
+        return;
+        removeWord(child,word.substr(1));
+        //Checking if there are any Children for the child Node
+        for(int i=0;i<26;i++){
+            if(child->children[i]!=NULL)
+            return;
+        }
+        delete child;
+        root->children[index] = NULL;
+    }
+    void removeWord(string word){
+        removeWord(root,word);
+    }
 };
